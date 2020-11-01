@@ -1,0 +1,9 @@
+.send {
+    position:fixed; width:100%; height:70px; background-color:black; padding:5px; bottom:0px; 
+  }
+
+body, .send, #messagebox {
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    background-color: black;
+    color: #1EFF00;
+}

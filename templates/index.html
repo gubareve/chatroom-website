@@ -19,32 +19,5 @@
   </body>
 </head>
 <script>
-var socket = io();
-socket.on('connect', function() {
-    console.log('Connected to websocket');
-    socket.emit('connection', {data: 'newconnection'});
-});
-socket.on('newmessage', function(message) {
-    document.getElementById('newmessages').style.display = 'none';
-    var currentmessages = document.getElementById("messagearea").innerHTML;
-    document.getElementById("messagearea").innerHTML = currentmessages + '<br>' + message;
-});
-socket.on('usercount', function(usercount) {
-    document.getElementById("usercount").innerHTML = usercount + ' Users Connected';
-});
-function sendmessage() {
-    var currentmessage = document.getElementById("messagebox").value;
-    var currentusername = document.getElementById("username").value;
-    document.getElementById("messagebox").value = '';
-    socket.emit('newmessage', {message: currentmessage, username: currentusername});
-}
-document.getElementById('messagebox').onkeypress = function(e){
-    if (!e) e = window.event;
-    var keyCode = e.keyCode || e.which;
-    if (keyCode == '13'){
-      // Enter pressed
-      sendmessage()
-      return false;
-    }
-  }
+(()=>{var e=io();e.on("connect",(function(){console.log("Connected to websocket"),e.emit("connection",{data:"newconnection"})})),e.on("newmessage",(function(e){document.getElementById("newmessages").style.display="none";var n=document.getElementById("messagearea").innerHTML;document.getElementById("messagearea").innerHTML=n+"<br>"+e})),e.on("usercount",(function(e){document.getElementById("usercount").innerHTML=e+" Users Connected"})),document.getElementById("messagebox").onkeypress=function(n){var t,o;if(n||(n=window.event),"13"==(n.keyCode||n.which))return t=document.getElementById("messagebox").value,o=document.getElementById("username").value,document.getElementById("messagebox").value="",e.emit("newmessage",{message:t,username:o}),!1}})();
 </script>
